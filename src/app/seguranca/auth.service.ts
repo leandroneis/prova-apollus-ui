@@ -8,7 +8,6 @@ export class AuthService {
 
   oauthTokenUrl: string;
   jwtPayload: any;
-  authorization = 'Basic YWRtaW46X0BkbWluIQ==';
 
   constructor(
     private http: HttpClient,
@@ -21,7 +20,7 @@ export class AuthService {
   login(usuario: string, senha: string): Promise<void> {
     const headers = new HttpHeaders()
       .append('Content-Type', 'application/x-www-form-urlencoded')
-      .append('Authorization', this.authorization);
+      .append('Authorization', 'Basic YWRtaW46X0BkbWluIQ==');
 
     const body = `username=${usuario}&password=${senha}&grant_type=password`;
 
@@ -45,7 +44,7 @@ export class AuthService {
   obterNovoAccessToken(): Promise<void> {
     const headers = new HttpHeaders()
       .append('Content-Type', 'application/x-www-form-urlencoded')
-      .append('Authorization', this.authorization);
+      .append('Authorization', 'Basic YWRtaW46X0BkbWluIQ==');
 
     const body = 'grant_type=refresh_token';
 
