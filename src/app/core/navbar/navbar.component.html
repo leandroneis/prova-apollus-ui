@@ -1,0 +1,21 @@
+<nav class="navbar">
+
+    <div class="container">
+        <div class="ui-g">
+
+            <div class="ui-g-5 ui-md-5">
+                Prova Apollus Usuários Api
+            </div>
+            <div class="ui-g-5 ui-md-5 navbar-usuario">
+                <i class="fa fa-user-circle-o"></i>{{ auth.jwtPayload?.nome }}
+            </div>
+            <div class="ui-g-1 ui-md-1 logout">
+                <a href="javascript:;" (click)="logout()" [ngStyle]="{'color':'#fff'}"><i class="fa fa-sign-out"></i>Sair</a>
+            </div>
+
+        </div>
+    </div>
+</nav>
+
+
+

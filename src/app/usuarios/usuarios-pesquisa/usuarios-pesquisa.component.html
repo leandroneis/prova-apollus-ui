@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="ui-g">
+
+    <form autocomplete="off" (ngSubmit)="pesquisar()">
+
+      <div class="ui-g-12">
+        <h1>Usuários</h1>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <label>Nome</label>
+        <input pInputText type="text" name="nome" [(ngModel)]="filtro.nome">
+      </div>
+      <div class="ui-g-12 ui-fluid">
+        <label>E-mail</label>
+        <input pInputText type="text" name="email" [(ngModel)]="filtro.email">
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Pesquisar" class=""></button>
+      </div>
+
+    </form>
+
+  </div>
+
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <p-table [value]="usuarios" [responsive]="true" [paginator]="true" [rows]="filtro.itensPorPagina"
+               [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)" #tabela>
+        <ng-template pTemplate="header">
+          <tr>
+            <th class="col-valor-header">Nome</th>
+            <th class="col-valor-header">E-mail</th>
+            <th class="col-senha-header">Senha</th>
+            <th class="col-acoes-header" *ngIf="auth.temPermissao('ROLE_ADMIN')"></th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-usuario>
+          <tr>
+            <td class="col-valor">{{ usuario.nome }}</td>
+            <td class="col-valor">{{ usuario.email }}</td>
+            <td class="col-senha"> {{ usuario.senha }}</td>
+            <td class="col-acoes" *ngIf="auth.temPermissao('ROLE_ADMIN')">
+              <a pButton icon="fa fa-pencil" [ngStyle]="{'margin-right':'2px'}" pTooltip="Editar" tooltipPosition="top"
+                 [routerLink]="['/usuarios', usuario.codigo]"></a>
+
+              <button pButton icon="fa fa-trash" pTooltip="Excluir" tooltipPosition="top"
+                      (click)="confirmarExclusao(usuario)"></button>
+            </td>
+
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="5">
+              Nenhum usuário encontrado!
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+    <div class="ui-g-12" *ngIf="auth.temPermissao('ROLE_ADMIN')">
+      <a pButton label="Novo Usário" routerLink="/usuarios/novo"></a>
+    </div>
+  </div>
+
+</div>

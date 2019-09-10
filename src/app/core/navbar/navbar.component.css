@@ -1,0 +1,15 @@
+.navbar {
+  padding: 15px 0;
+  background-color: #1e94d2;
+  color: #fff;
+}
+
+.navbar-usuario {
+  margin-bottom: 15px;
+  color: #fff;
+  text-align: right;
+}
+
+.logout {
+  text-align: end;
+}

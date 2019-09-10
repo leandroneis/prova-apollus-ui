@@ -1,0 +1,49 @@
+<div class="container">
+  <form autocomplete="off" (ngSubmit)="salvar()" [formGroup]="formulario">
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1>{{ editando ? 'Edição de' : 'Novo' }} Pessoa</h1>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <label>Nome</label>
+        <input pInputText type="text" name="nome" formControlName="nome">
+
+        <app-message [control]="formulario.get('nome')" error="obrigatoriedade" text="Informe o nome"></app-message>
+        <app-message [control]="formulario.get('nome')" error="tamanhoMinimo"
+                     text="Mínimo de {{ formulario.get('nome').errors?.tamanhoMinimo?.tamanho }} caracteres"></app-message>
+      </div>
+
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <label>E-mail</label>
+        <input pInputText type="email" name="email" formControlName="email">
+        <app-message [control]="formulario.get('email')" error="email"
+                     text="Informe um e-mail válido"></app-message>
+      </div>
+
+      <div class="ui-g-4 ui-md-2 ui-fluid">
+        <div class="ui-g-12">
+          <p-radioButton name="perfil" value="ROLE_ADMIN" label="ADMIN" formControlName="perfil"></p-radioButton>
+        </div>
+        <div class="ui-g-12">
+          <p-radioButton name="perfil" value="ROLE_USER" label="USER" formControlName="perfil"></p-radioButton>
+        </div>
+      </div>
+      <div class="ui-g-12 ui-fluid">
+        <label>Senha</label>
+        <input type="password" pPassword name="senha" formControlName="senha">
+
+        <app-message [control]="formulario.get('senha')" error="obrigatoriedade" text="Informe a senha"></app-message>
+        <app-message [control]="formulario.get('senha')" error="tamanhoMinimo"
+                     text="Mínimo de {{ formulario.get('senha').errors?.tamanhoMinimo?.tamanho }} caracteres"></app-message>
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Salvar" [disabled]="formulario.invalid"
+                class="margem-a-direita"></button>
+        <button pButton type="button" label="Novo" class="ui-button-info margem-a-direita" (click)="nova()"></button>
+        <a routerLink="/usuarios">Voltar para a pesquisa</a>
+      </div>
+    </div>
+  </form>
+</div>
