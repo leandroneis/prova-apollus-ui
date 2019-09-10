@@ -99,9 +99,8 @@ export class UsuarioCadastroComponent implements OnInit {
     adicionarUsuario() {
         this.usuarioService.adicionar(this.formulario.value)
             .then(usuarioAdicionado => {
-                console.log(JSON.stringify(usuarioAdicionado));
-                /*this.messageService.add({severity: 'success', detail: 'Usuário adicionado com sucesso!'});
-                this.router.navigate(['/usuarios', usuarioAdicionado.codigo]);*/
+                this.messageService.add({severity: 'success', detail: 'Usuário adicionado com sucesso!'});
+                this.router.navigate(['/usuarios', usuarioAdicionado.codigo]);
             })
             .catch(erro => this.errorHandler.handle(erro));
     }
