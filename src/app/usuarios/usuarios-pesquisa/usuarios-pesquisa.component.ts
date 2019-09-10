@@ -18,6 +18,7 @@ export class UsuariosPesquisaComponent implements OnInit {
     totalRegistros = 0;
     filtro = new UsuarioFiltro();
     usuarios = [];
+    role: string;
     @ViewChild('tabela', {static: true}) grid;
 
     constructor(
@@ -72,5 +73,9 @@ export class UsuariosPesquisaComponent implements OnInit {
                 this.messageService.add({severity: 'success', detail: 'Usuário excluído com sucesso!'});
             })
             .catch(erro => this.errorHandler.handle(erro));
+    }
+
+    temPermissao(perfil: string) {
+        return this.auth.temPermissao(perfil);
     }
 }

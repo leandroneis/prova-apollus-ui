@@ -42,7 +42,7 @@
             <td class="col-valor">{{ usuario.nome }}</td>
             <td class="col-valor">{{ usuario.email }}</td>
             <td class="col-senha"> {{ usuario.senha }}</td>
-            <td class="col-acoes" *ngIf="auth.temPermissao('ROLE_ADMIN')">
+            <td class="col-acoes" *ngIf="temPermissao('ROLE_ADMIN')">
               <a pButton icon="fa fa-pencil" [ngStyle]="{'margin-right':'2px'}" pTooltip="Editar" tooltipPosition="top"
                  [routerLink]="['/usuarios', usuario.codigo]"></a>
 
@@ -63,7 +63,7 @@
       </p-table>
     </div>
 
-    <div class="ui-g-12" *ngIf="auth.temPermissao('ROLE_ADMIN')">
+    <div class="ui-g-12" *ngIf="temPermissao('ROLE_ADMIN')">
       <a pButton label="Novo Usário" routerLink="/usuarios/novo"></a>
     </div>
   </div>
